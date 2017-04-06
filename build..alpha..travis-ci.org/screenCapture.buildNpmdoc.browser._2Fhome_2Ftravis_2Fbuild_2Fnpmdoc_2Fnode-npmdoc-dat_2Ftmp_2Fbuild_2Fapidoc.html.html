@@ -1,0 +1,179 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://datproject.org">dat (v12.0.3)</a>
+</h1>
+<h4>Dat is the package manager for data. Easily share and version control data.</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.dat">module dat</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">dat.</span>dat_json</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.dat.dat_json">module dat.dat_json</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dat.dat_json.read">
+            function <span class="apidocSignatureSpan">dat.dat_json.</span>read
+            <span class="apidocSignatureSpan">(dat, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dat.dat_json.write">
+            function <span class="apidocSignatureSpan">dat.dat_json.</span>write
+            <span class="apidocSignatureSpan">(dat, defaults, cb)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.dat" id="apidoc.module.dat">module dat</a></h1>
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.dat.dat_json" id="apidoc.module.dat.dat_json">module dat.dat_json</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.dat.dat_json.read" id="apidoc.element.dat.dat_json.read">
+        function <span class="apidocSignatureSpan">dat.dat_json.</span>read
+        <span class="apidocSignatureSpan">(dat, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">read = function (dat, cb) {
+  // dat.json
+  // reads to dat.meta if exists
+  // (TODO: move to module &amp; validate dat.json)
+  fs.readFile(datJsonFile(dat), 'utf8', function (err, body) {
+    if (err) return cb(err)
+    if (!body) return cb(null, {})
+    var meta
+    try {
+      meta = JSON.parse(body)
+    } catch (e) {
+      return cb(new Error('Error reading the dat.json file.'))
+    }
+    cb(null, meta)
+  })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.dat.dat_json.write" id="apidoc.element.dat.dat_json.write">
+        function <span class="apidocSignatureSpan">dat.dat_json.</span>write
+        <span class="apidocSignatureSpan">(dat, defaults, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">write = function (dat, defaults, cb) {
+  if (typeof defaults === 'function') {
+    cb = defaults
+    defaults = {}
+  }
+  dat.meta = {
+    title: defaults.title || path.basename(dat.path),
+    url: defaults.url,
+    name: defaults.name,
+    description: defaults.description || ''
+  }
+  if (dat.key) dat.meta.url = 'dat://' + stringKey(dat.key)
+  fs.writeFile(datJsonFile(dat), JSON.stringify(dat.meta), cb)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// TODO: could be optimized for frequent metadata updates
+archive.metadata.on('update', updateDownload)
+
+// General Archive Info
+var niceType = (type === 'clone') ? 'Cloning' : type.charAt(0).toUpperCase() + type.slice(1) + 'ing'
+;
+progressOutput[0] = `${niceType} Dat Archive: ${dat.path}`
+progressOutput[1] = ui.link(dat.key) + '\n'
+if (opts.quiet &amp;&amp; type !== 'clone') process.stdout.<span class="apidocCodeKeywordSpan">write</span>(ui.link(
+dat.key))
+
+// Stats
+stats = dat.trackStats()
+stats.on('update:blocksProgress', checkDone)
+
+// Network
+if (!opts.upload &amp;&amp; type !== 'sync') opts.upload = false // Do not upload on pull/clone
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
