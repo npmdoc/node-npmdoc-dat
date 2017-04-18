@@ -1,9 +1,14 @@
-# api documentation for  [dat (v12.0.3)](https://datproject.org)  [![npm package](https://img.shields.io/npm/v/npmdoc-dat.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-dat) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-dat.svg)](https://travis-ci.org/npmdoc/node-npmdoc-dat)
+# npmdoc-dat
+
+#### api documentation for  [dat (v12.0.3)](https://datproject.org)  [![npm package](https://img.shields.io/npm/v/npmdoc-dat.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-dat) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-dat.svg)](https://travis-ci.org/npmdoc/node-npmdoc-dat)
+
 #### Dat is the package manager for data. Easily share and version control data.
 
-[![NPM](https://nodei.co/npm/dat.png?downloads=true)](https://www.npmjs.com/package/dat)
+[![NPM](https://nodei.co/npm/dat.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/dat)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-dat/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-dat_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-dat/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-dat/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-dat/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-dat/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-dat/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-dat/build/screenCapture.npmPackageListing.svg)
 
@@ -71,25 +76,20 @@
     "license": "BSD-3-Clause",
     "maintainers": [
         {
-            "name": "jhand",
-            "email": "joe@joeahand.com"
+            "name": "jhand"
         },
         {
-            "name": "karissa",
-            "email": "krmckelv@gmail.com"
+            "name": "karissa"
         },
         {
-            "name": "mafintosh",
-            "email": "mathiasbuus@gmail.com"
+            "name": "mafintosh"
         },
         {
-            "name": "maxogden",
-            "email": "max@maxogden.com"
+            "name": "maxogden"
         }
     ],
     "name": "dat",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git://github.com/datproject/dat.git"
@@ -102,89 +102,6 @@
     },
     "version": "12.0.3"
 }
-```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module dat](#apidoc.module.dat)
-1.  object <span class="apidocSignatureSpan">dat.</span>dat_json
-
-#### [module dat.dat_json](#apidoc.module.dat.dat_json)
-1.  [function <span class="apidocSignatureSpan">dat.dat_json.</span>read (dat, cb)](#apidoc.element.dat.dat_json.read)
-1.  [function <span class="apidocSignatureSpan">dat.dat_json.</span>write (dat, defaults, cb)](#apidoc.element.dat.dat_json.write)
-
-
-
-# <a name="apidoc.module.dat"></a>[module dat](#apidoc.module.dat)
-
-
-
-# <a name="apidoc.module.dat.dat_json"></a>[module dat.dat_json](#apidoc.module.dat.dat_json)
-
-#### <a name="apidoc.element.dat.dat_json.read"></a>[function <span class="apidocSignatureSpan">dat.dat_json.</span>read (dat, cb)](#apidoc.element.dat.dat_json.read)
-- description and source-code
-```javascript
-read = function (dat, cb) {
-  // dat.json
-  // reads to dat.meta if exists
-  // (TODO: move to module & validate dat.json)
-  fs.readFile(datJsonFile(dat), 'utf8', function (err, body) {
-    if (err) return cb(err)
-    if (!body) return cb(null, {})
-    var meta
-    try {
-      meta = JSON.parse(body)
-    } catch (e) {
-      return cb(new Error('Error reading the dat.json file.'))
-    }
-    cb(null, meta)
-  })
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.dat.dat_json.write"></a>[function <span class="apidocSignatureSpan">dat.dat_json.</span>write (dat, defaults, cb)](#apidoc.element.dat.dat_json.write)
-- description and source-code
-```javascript
-write = function (dat, defaults, cb) {
-  if (typeof defaults === 'function') {
-    cb = defaults
-    defaults = {}
-  }
-  dat.meta = {
-    title: defaults.title || path.basename(dat.path),
-    url: defaults.url,
-    name: defaults.name,
-    description: defaults.description || ''
-  }
-  if (dat.key) dat.meta.url = 'dat://' + stringKey(dat.key)
-  fs.writeFile(datJsonFile(dat), JSON.stringify(dat.meta), cb)
-}
-```
-- example usage
-```shell
-...
-// TODO: could be optimized for frequent metadata updates
-archive.metadata.on('update', updateDownload)
-
-// General Archive Info
-var niceType = (type === 'clone') ? 'Cloning' : type.charAt(0).toUpperCase() + type.slice(1) + 'ing'
-progressOutput[0] = '${niceType} Dat Archive: ${dat.path}'
-progressOutput[1] = ui.link(dat.key) + '\n'
-if (opts.quiet && type !== 'clone') process.stdout.write(ui.link(dat.key))
-
-// Stats
-stats = dat.trackStats()
-stats.on('update:blocksProgress', checkDone)
-
-// Network
-if (!opts.upload && type !== 'sync') opts.upload = false // Do not upload on pull/clone
-...
 ```
 
 
