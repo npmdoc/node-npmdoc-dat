@@ -1,6 +1,6 @@
 # npmdoc-dat
 
-#### api documentation for  [dat (v12.0.3)](https://datproject.org)  [![npm package](https://img.shields.io/npm/v/npmdoc-dat.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-dat) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-dat.svg)](https://travis-ci.org/npmdoc/node-npmdoc-dat)
+#### basic api documentation for  [dat (v12.0.3)](https://datproject.org)  [![npm package](https://img.shields.io/npm/v/npmdoc-dat.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-dat) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-dat.svg)](https://travis-ci.org/npmdoc/node-npmdoc-dat)
 
 #### Dat is the package manager for data. Easily share and version control data.
 
