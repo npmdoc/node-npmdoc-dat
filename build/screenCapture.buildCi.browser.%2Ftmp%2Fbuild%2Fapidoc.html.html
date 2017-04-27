@@ -60,6 +60,18 @@
 
         </li>
 
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">dat.</span>doctor</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">dat.</span>index</span>
+
+        </li>
+
     </ol></li>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.dat.dat_json">module dat.dat_json</a><ol>
@@ -84,10 +96,103 @@
 
     </ol></li>
 
+    <li class="apidocModuleLi"><a href="#apidoc.module.dat.doctor">module dat.doctor</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dat.doctor.command">
+            function <span class="apidocSignatureSpan">dat.doctor.</span>command
+            <span class="apidocSignatureSpan">(opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">dat.doctor.</span>options</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">dat.doctor.</span>help</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">dat.doctor.</span>name</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.dat.index">module dat.index</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dat.index.bar">
+            function <span class="apidocSignatureSpan">dat.index.</span>bar
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dat.index.exit">
+            function <span class="apidocSignatureSpan">dat.index.</span>exit
+            <span class="apidocSignatureSpan">(log)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dat.index.exitErr">
+            function <span class="apidocSignatureSpan">dat.index.</span>exitErr
+            <span class="apidocSignatureSpan">(err)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dat.index.importProgress">
+            function <span class="apidocSignatureSpan">dat.index.</span>importProgress
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dat.index.link">
+            function <span class="apidocSignatureSpan">dat.index.</span>link
+            <span class="apidocSignatureSpan">(key)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dat.index.network">
+            function <span class="apidocSignatureSpan">dat.index.</span>network
+            <span class="apidocSignatureSpan">(peers, stats)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.dat" id="apidoc.module.dat">module dat</a></h1>
+
+
+
+
 
 
 
@@ -120,7 +225,23 @@
     cb(null, meta)
   })
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// General Archive Info
+output[0] = `Dat ${opts.live !== false ? 'Archive' : 'Snapshot Archive'} created: ${dat.path}`
+if (dat.key) output[1] = ui.link(dat.key)
+else output[1] = 'Creating link...'
+if (opts.quiet &amp;&amp; dat.key) process.stdout.write(ui.link(dat.key))
+
+if (dat.owner) {
+  datJson.<span class="apidocCodeKeywordSpan">read</span>(dat, function (err, body) {
+    if (!err) return importFiles() // TODO: if dat.json exists, then what?
+    if (err.code === 'ENOENT' || !body) {
+      return datJson.write(dat, function (err) {
+        if (err) return exit(err)
+        importFiles()
+      })
+    }
+...</pre></li>
     </ul>
 
 
@@ -164,6 +285,280 @@ stats.on('update:blocksProgress', checkDone)
 
 // Network
 if (!opts.upload &amp;&amp; type !== 'sync') opts.upload = false // Do not upload on pull/clone
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.dat.doctor" id="apidoc.module.dat.doctor">module dat.doctor</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.dat.doctor.command" id="apidoc.element.dat.doctor.command">
+        function <span class="apidocSignatureSpan">dat.doctor.</span>command
+        <span class="apidocSignatureSpan">(opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">command = function (opts) {
+  opts.id = opts._[0]
+  doctor(opts)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    opts.dir = opts._[0]
+    fs.stat(opts.dir, function (err, stat) {
+      if (err || !stat.isDirectory()) return usage(opts)
+
+      // Set default opts. TODO: use default opts in sync
+      opts.watch = opts.watch || true
+      opts.import = opts.import || true
+      require('../lib/commands/sync').<span class="apidocCodeKeywordSpan">command</span>(opts)
+    })
+  } catch (e) { return done() }
+}
+
+function done () {
+  return usage(opts)
+}
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.dat.index" id="apidoc.module.dat.index">module dat.index</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.dat.index.bar" id="apidoc.element.dat.index.bar">
+        function <span class="apidocSignatureSpan">dat.index.</span>bar
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">bar = function () {
+  return progress({
+    width: 50,
+    total: 100,
+    style: function (complete, incomplete) {
+      return '[' + complete + '&gt;' + incomplete + ']'
+    }
+  })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  ],
+  [] // Shows network information
+]
+var progressOutput = output[0] // shortcut for progress output
+var log = logger(output, {debug: opts.verbose, quiet: opts.quiet || opts.debug}) // If debug=true we want output to be quiet
+
+// UI Elements
+var bar = ui.<span class="apidocCodeKeywordSpan">bar</span>()
+var exit = ui.exit(log)
+
+// Printing Things!!
+if (opts.debug) opts.logspeed = 1000
+setInterval(function () {
+  if (stats) updateDownload()
+  if (network) updateNetwork()
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.dat.index.exit" id="apidoc.element.dat.index.exit">
+        function <span class="apidocSignatureSpan">dat.index.</span>exit
+        <span class="apidocSignatureSpan">(log)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">exit = function (log) {
+  return function (err) {
+    if (err) {
+      readline.cursorTo(process.stdout, 0)
+      readline.clearLine(process.stdout)
+      if (debug.enabled) console.trace(err)
+      else console.error(err)
+      process.exit(1)
+    }
+    if (log) log.print()
+    process.exit(0)
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+module.exports = function (type, opts, dat) {
+assert.ok(type, 'lib/download download type required')
+assert.ok(['sync', 'clone', 'pull'].indexOf(type) &gt; -1, 'lib/download download type must
+ be sync, clone, pull')
+
+// TODO: clean up this logic
+var resume = opts.resume || false
+var hasKey = (dat &amp;&amp; dat.key) || opts.key
+if (!hasKey &amp;&amp; !resume) return ui.<span class="apidocCodeKeywordSpan">exit</span>()('lib/download Key required to
+ download')
+
+var network = null
+var stats = null
+var archive = null
+var onceConnected = false
+
+// Logging Init
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.dat.index.exitErr" id="apidoc.element.dat.index.exitErr">
+        function <span class="apidocSignatureSpan">dat.index.</span>exitErr
+        <span class="apidocSignatureSpan">(err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">exitErr = function (err) {
+  // shortcut
+  require('./exit')()(err)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  name: 'publish',
+  options: [],
+  command: publish
+}
+
+function publish (opts) {
+  var client = Registry(opts)
+  if (!client.whoami().token) return ui.<span class="apidocCodeKeywordSpan">exitErr</span>('Please login before publishing.&amp;#
+x27;)
+
+  opts.createIfMissing = false // publish must always be a resumed archive
+  Dat(opts.dir, opts, function (err, dat) {
+if (err) return ui.exitErr(err)
+
+datJson.read(dat, function (err, body) {
+  if (err &amp;&amp; err.code !== 'ENOENT') return ui.exitErr(err)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.dat.index.importProgress" id="apidoc.element.dat.index.importProgress">
+        function <span class="apidocSignatureSpan">dat.index.</span>importProgress
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">importProgress = function () {
+  var bar = Bar()
+  var start = Date.now()
+  return function (importer) {
+    if (!importer || !importer.bytesImported) return ''
+    var importedBytes = importer.bytesImported
+    var importedFiles = importer.fileCount - 1 // counted before import finishes so -1 TODO: fix?
+    var speed = importer.bytesImported * 1000 / (Date.now() - start)
+    var progress = Math.round(importedBytes * 100 / importer.countStats.bytes)
+    return bar(progress) + ` ${importedFiles} of ${importer.countStats.files} ${importer.countStats.files === 1 ? 'file' : 'files
+'}` + ' (' + prettyBytes(speed) + '/s' + ')'
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  output.push(['', '', ''], []) // progress bar, live file list
+  liveProgressOutput = output[2]
+  fileOutput = output[3]
+}
+var log = logger(output, {debug: opts.verbose, quiet: opts.quiet || opts.debug}) // If debug=true we want output to be quiet.
+
+// UI Elements
+var importUI = ui.<span class="apidocCodeKeywordSpan">importProgress</span>()
+var exit = ui.exit(log)
+
+// Printing Things!!
+setInterval(function () {
+  if (importStatus &amp;&amp; !importDone) updateImport()
+  if (network) updateNetwork()
+  log.print()
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.dat.index.link" id="apidoc.element.dat.index.link">
+        function <span class="apidocSignatureSpan">dat.index.</span>link
+        <span class="apidocSignatureSpan">(key)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">link = function (key) {
+  return `Link: dat://${stringKey(key)}`
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+})
+// TODO: could be optimized for frequent metadata updates
+archive.metadata.on('update', updateDownload)
+
+// General Archive Info
+var niceType = (type === 'clone') ? 'Cloning' : type.charAt(0).toUpperCase() + type.slice(1) + 'ing'
+;
+progressOutput[0] = `${niceType} Dat Archive: ${dat.path}`
+progressOutput[1] = ui.<span class="apidocCodeKeywordSpan">link</span>(dat.key) + '\n'
+if (opts.quiet &amp;&amp; type !== 'clone') process.stdout.write(ui.link(dat.key))
+
+// Stats
+stats = dat.trackStats()
+stats.on('update:blocksProgress', checkDone)
+
+// Network
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.dat.index.network" id="apidoc.element.dat.index.network">
+        function <span class="apidocSignatureSpan">dat.index.</span>network
+        <span class="apidocSignatureSpan">(peers, stats)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">network = function (peers, stats) {
+  if (!peers) return ['Looking for connections in Dat Network...']
+  var msg = []
+  msg.push(`${peers} ${peers === 1 ? 'peer' : 'peers'} on the Dat Network`)
+  var spdMsg = ''
+  if (stats.downloadSpeed) spdMsg += `Downloading: ${prettyBytes(stats.downloadSpeed)}/s` + '  '
+  if (stats.uploadSpeed) spdMsg += `Uploading: ${prettyBytes(stats.uploadSpeed)}/s`
+  msg.push(spdMsg)
+  return msg
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  else progressOutput[4] = `Total size: ${st.filesTotal} ${st.filesTotal === 1 ? 'file' : 'files'} (${prettyBytes
+(st.bytesTotal)})`
+
+  if (metaProgress &lt; 100) debug('Metadata Download Progress:', metaProgress + '%')
+  if (contentProgress &lt; 100) debug('Download Progress:', contentProgress + '%', contentBlocksProgress, &amp;#
+x27;blocks of', st.blocksTotal)
+}
+
+function updateNetwork () {
+  output[1] = ui.<span class="apidocCodeKeywordSpan">network</span>(network.connected, stats.network)
+}
+
+function checkDone () {
+  if (!onceConnected || archive.metadata.blocksRemaining() !== 0) return false
+  if (!archive.content || archive.content.blocksRemaining() !== 0) return false
+  if (archive.metadata.blocks &gt; 1 &amp;&amp; !archive.content.blocks) return false // If metadata.blocks = 1, content feed
+ is empty so finish
 ...</pre></li>
     </ul>
 

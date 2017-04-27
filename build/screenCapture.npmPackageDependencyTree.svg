@@ -1,7 +1,7 @@
 <svg height="5966" width="720" xmlns="http://www.w3.org/2000/svg">
 <rect height="5966" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
-<tspan x="10" y="26">56 megabytes installed</tspan>
+<tspan x="10" y="26">57 megabytes installed</tspan>
 <tspan x="10" y="42"></tspan>
 <tspan x="10" y="58">node_modules</tspan>
 <tspan x="10" y="74">└─┬ dat@12.0.3 </tspan>
@@ -73,7 +73,7 @@
 <tspan x="10" y="1130">  │ │   ├── filename-regex@2.0.0 </tspan>
 <tspan x="10" y="1146">  │ │   ├── is-extglob@1.0.0 </tspan>
 <tspan x="10" y="1162">  │ │   ├── is-glob@2.0.1 </tspan>
-<tspan x="10" y="1178">  │ │   ├─┬ kind-of@3.1.0 </tspan>
+<tspan x="10" y="1178">  │ │   ├─┬ kind-of@3.2.0 </tspan>
 <tspan x="10" y="1194">  │ │   │ └── is-buffer@1.1.5 </tspan>
 <tspan x="10" y="1210">  │ │   ├─┬ normalize-path@2.1.1 </tspan>
 <tspan x="10" y="1226">  │ │   │ └── remove-trailing-separator@1.0.1 </tspan>
@@ -101,7 +101,7 @@
 <tspan x="10" y="1578">  │ │ │ ├─┬ brfs@1.4.3 </tspan>
 <tspan x="10" y="1594">  │ │ │ │ ├─┬ quote-stream@1.0.2 </tspan>
 <tspan x="10" y="1610">  │ │ │ │ │ └── buffer-equal@0.0.1 </tspan>
-<tspan x="10" y="1626">  │ │ │ │ ├─┬ resolve@1.3.2 </tspan>
+<tspan x="10" y="1626">  │ │ │ │ ├─┬ resolve@1.3.3 </tspan>
 <tspan x="10" y="1642">  │ │ │ │ │ └── path-parse@1.0.5 </tspan>
 <tspan x="10" y="1658">  │ │ │ │ └─┬ static-module@1.3.1 </tspan>
 <tspan x="10" y="1674">  │ │ │ │   ├─┬ concat-stream@1.4.10 </tspan>
@@ -166,7 +166,7 @@
 <tspan x="10" y="2618">  │ │ │ │ └── varint@5.0.0 </tspan>
 <tspan x="10" y="2634">  │ │ │ ├── randombytes@2.0.3 </tspan>
 <tspan x="10" y="2650">  │ │ │ ├─┬ sodium-signatures@2.0.0 </tspan>
-<tspan x="10" y="2666">  │ │ │ │ ├── sodium-native@1.8.0 </tspan>
+<tspan x="10" y="2666">  │ │ │ │ ├── sodium-native@1.9.0 </tspan>
 <tspan x="10" y="2682">  │ │ │ │ └── tweetnacl@0.14.5 </tspan>
 <tspan x="10" y="2698">  │ │ │ ├── thunky@0.1.0 </tspan>
 <tspan x="10" y="2714">  │ │ │ ├── uint64be@2.0.1 </tspan>
@@ -187,10 +187,10 @@
 <tspan x="10" y="2954">  │ │ │   ├── node-abi@2.0.0 </tspan>
 <tspan x="10" y="2970">  │ │ │   ├── noop-logger@0.1.1 </tspan>
 <tspan x="10" y="2986">  │ │ │   ├─┬ npmlog@4.0.2 </tspan>
-<tspan x="10" y="3002">  │ │ │   │ ├─┬ are-we-there-yet@1.1.2 </tspan>
+<tspan x="10" y="3002">  │ │ │   │ ├─┬ are-we-there-yet@1.1.4 </tspan>
 <tspan x="10" y="3018">  │ │ │   │ │ └── delegates@1.0.0 </tspan>
 <tspan x="10" y="3034">  │ │ │   │ ├── console-control-strings@1.1.0 </tspan>
-<tspan x="10" y="3050">  │ │ │   │ ├─┬ gauge@2.7.3 </tspan>
+<tspan x="10" y="3050">  │ │ │   │ ├─┬ gauge@2.7.4 </tspan>
 <tspan x="10" y="3066">  │ │ │   │ │ ├── aproba@1.1.1 </tspan>
 <tspan x="10" y="3082">  │ │ │   │ │ ├── has-unicode@2.0.1 </tspan>
 <tspan x="10" y="3098">  │ │ │   │ │ ├── signal-exit@3.0.2 </tspan>
@@ -228,7 +228,7 @@
 <tspan x="10" y="3610">  │ │ │   └── set-immediate-shim@1.0.1 </tspan>
 <tspan x="10" y="3626">  │ │ ├─┬ hyperdrive-duplicate@1.0.0 </tspan>
 <tspan x="10" y="3642">  │ │ │ └─┬ stream-equal@0.1.13 </tspan>
-<tspan x="10" y="3658">  │ │ │   └── @types/node@7.0.13 </tspan>
+<tspan x="10" y="3658">  │ │ │   └── @types/node@7.0.14 </tspan>
 <tspan x="10" y="3674">  │ │ └── run-series@1.1.4 </tspan>
 <tspan x="10" y="3690">  │ ├─┬ hyperdrive-network-speed@1.1.2 </tspan>
 <tspan x="10" y="3706">  │ │ └── speedometer@1.0.0 </tspan>
@@ -242,7 +242,7 @@
 <tspan x="10" y="3834">  │ │   ├── fast-future@1.0.2 </tspan>
 <tspan x="10" y="3850">  │ │   └── nan@2.5.1 </tspan>
 <tspan x="10" y="3866">  │ ├── multicb@1.2.1 </tspan>
-<tspan x="10" y="3882">  │ ├─┬ random-access-file@1.6.1 </tspan>
+<tspan x="10" y="3882">  │ ├─┬ random-access-file@1.7.0 </tspan>
 <tspan x="10" y="3898">  │ │ └── buffer-alloc-unsafe@1.0.0 </tspan>
 <tspan x="10" y="3914">  │ ├─┬ subleveldown@2.1.0 </tspan>
 <tspan x="10" y="3930">  │ │ ├── abstract-leveldown@2.4.1 </tspan>
@@ -254,8 +254,8 @@
 <tspan x="10" y="4026">  │   ├── is-number@2.1.0 </tspan>
 <tspan x="10" y="4042">  │   ├── is-string@1.0.4 </tspan>
 <tspan x="10" y="4058">  │   └── os-homedir@1.0.2 </tspan>
-<tspan x="10" y="4074">  ├─┬ debug@2.6.3 </tspan>
-<tspan x="10" y="4090">  │ └── ms@0.7.2 </tspan>
+<tspan x="10" y="4074">  ├─┬ debug@2.6.5 </tspan>
+<tspan x="10" y="4090">  │ └── ms@0.7.3 </tspan>
 <tspan x="10" y="4106">  ├─┬ memdb@1.3.1 </tspan>
 <tspan x="10" y="4122">  │ ├─┬ levelup@1.3.5 </tspan>
 <tspan x="10" y="4138">  │ │ ├── deferred-leveldown@1.2.1 </tspan>
@@ -311,7 +311,7 @@
 <tspan x="10" y="4938">  │ │ │   ├─┬ dashdash@1.14.1 </tspan>
 <tspan x="10" y="4954">  │ │ │   │ └── assert-plus@1.0.0 </tspan>
 <tspan x="10" y="4970">  │ │ │   ├── ecc-jsbn@0.1.1 </tspan>
-<tspan x="10" y="4986">  │ │ │   ├─┬ getpass@0.1.6 </tspan>
+<tspan x="10" y="4986">  │ │ │   ├─┬ getpass@0.1.7 </tspan>
 <tspan x="10" y="5002">  │ │ │   │ └── assert-plus@1.0.0 </tspan>
 <tspan x="10" y="5018">  │ │ │   ├── jodid25519@1.0.2 </tspan>
 <tspan x="10" y="5034">  │ │ │   └── jsbn@0.1.1 </tspan>
@@ -329,7 +329,7 @@
 <tspan x="10" y="5226">  │ │ ├── tunnel-agent@0.6.0 </tspan>
 <tspan x="10" y="5242">  │ │ └── uuid@3.0.1 </tspan>
 <tspan x="10" y="5258">  │ └─┬ xhr@2.4.0 </tspan>
-<tspan x="10" y="5274">  │   ├─┬ global@4.3.1 </tspan>
+<tspan x="10" y="5274">  │   ├─┬ global@4.3.2 </tspan>
 <tspan x="10" y="5290">  │   │ ├─┬ min-document@2.19.0 </tspan>
 <tspan x="10" y="5306">  │   │ │ └── dom-walk@0.1.1 </tspan>
 <tspan x="10" y="5322">  │   │ └── process@0.5.2 </tspan>
